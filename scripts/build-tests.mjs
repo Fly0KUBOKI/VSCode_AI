@@ -1,7 +1,9 @@
 import * as esbuild from 'esbuild';
-import { globSync } from 'node:fs';
+import { readdirSync } from 'node:fs';
 
-const tests = globSync('test/*.test.ts');
+const tests = readdirSync('test')
+  .filter((name) => name.endsWith('.test.ts'))
+  .map((name) => `test/${name}`);
 if (tests.length === 0) {
   throw new Error('No unit tests found.');
 }

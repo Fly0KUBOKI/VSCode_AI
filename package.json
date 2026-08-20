@@ -166,8 +166,9 @@
     "build": "node scripts/build.mjs",
     "build:production": "node scripts/build.mjs --production",
     "build:tests": "node scripts/build-tests.mjs",
+    "build:integration": "node scripts/build-integration.mjs",
     "test:unit": "node --test out-test/*.test.js",
-    "test": "npm run check-types && npm run build:production && npm run build:tests && npm run test:unit",
+    "test": "npm run check-types && npm run build:production && npm run build:tests && npm run build:integration && npm run test:unit",
     "package": "npm run test && vsce package --no-dependencies"
   },
   "devDependencies": {
