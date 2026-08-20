@@ -33,5 +33,5 @@ Codex と Claude Code の利用率を VS Code 上で確認する、Windows 向�
 - `AI Usage: Clear History`
 - `AI Usage: Show Logs`
 
-このフォルダーには実行用バンドルのみを配置しています。TypeScript ソース、テスト、
+このフォルダーには実行用バンドルと TypeScript ソースを配置しています。テスト、
 ビルド環境、検証記録は Git コミット `4b7b21c` から復元できます。
