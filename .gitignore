@@ -1,7 +1,5 @@
 node_modules/
-dist/
 out-test/
 out-integration/
-*.vsix
 .DS_Store
 *.log
