@@ -1,0 +1,180 @@
+{
+  "name": "ai-usage-monitor",
+  "displayName": "AI Usage Monitor",
+  "description": "CodexとClaude Codeの利用率をVS Code内で確認する個人向けモニター",
+  "version": "0.1.0",
+  "publisher": "personal",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "codex",
+    "claude-code",
+    "usage",
+    "rate-limit"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiUsageMonitor.openDashboard",
+        "title": "Open Dashboard",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.refresh",
+        "title": "Refresh",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.refreshCodex",
+        "title": "Refresh Codex",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.refreshClaude",
+        "title": "Refresh Claude Code",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.setClaudeUsage",
+        "title": "Set Claude Usage from Official Screen",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.clearClaudeUsage",
+        "title": "Clear Manual Claude Usage",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.openSettings",
+        "title": "Open Settings",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.clearHistory",
+        "title": "Clear History",
+        "category": "AI Usage"
+      },
+      {
+        "command": "aiUsageMonitor.showLogs",
+        "title": "Show Logs",
+        "category": "AI Usage"
+      }
+    ],
+    "configuration": {
+      "title": "AI Usage Monitor",
+      "properties": {
+        "aiUsageMonitor.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "利用率をバックグラウンドで自動更新します。"
+        },
+        "aiUsageMonitor.updateIntervalSeconds": {
+          "type": "number",
+          "default": 60,
+          "minimum": 30,
+          "maximum": 3600,
+          "description": "自動更新間隔（秒）。取得失敗が続く場合は自動的に間隔を延長します。"
+        },
+        "aiUsageMonitor.codex.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Codex利用率Providerを有効にします。"
+        },
+        "aiUsageMonitor.codex.executablePath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "Codex実行ファイルへの明示的なパス。空の場合はOpenAI公式拡張から自動検出します。"
+        },
+        "aiUsageMonitor.claude.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Claude Code利用率Providerを有効にします。"
+        },
+        "aiUsageMonitor.claude.manualDataMaxAgeMinutes": {
+          "type": "number",
+          "default": 15,
+          "minimum": 1,
+          "maximum": 1440,
+          "description": "手動入力したClaude利用率を最新とみなす時間（分）。"
+        },
+        "aiUsageMonitor.notifications.thresholds": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "default": [
+            70,
+            85,
+            95,
+            100
+          ],
+          "description": "VS Code通知を表示する利用率のしきい値。"
+        },
+        "aiUsageMonitor.notifications.reset": {
+          "type": "boolean",
+          "default": true,
+          "description": "利用枠のリセットを検出したときに通知します。"
+        },
+        "aiUsageMonitor.notifications.errors": {
+          "type": "boolean",
+          "default": true,
+          "description": "連続して利用率を取得できない場合に通知します。"
+        },
+        "aiUsageMonitor.historyRetentionDays": {
+          "type": "number",
+          "default": 30,
+          "minimum": 1,
+          "maximum": 365,
+          "description": "ローカル履歴の保存日数。"
+        },
+        "aiUsageMonitor.showEstimatedValues": {
+          "type": "boolean",
+          "default": true,
+          "description": "推定値または手動入力値を表示します。"
+        },
+        "aiUsageMonitor.debugLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "秘密情報を含まない詳細ログを有効にします。"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "build:production": "node scripts/build.mjs --production",
+    "build:tests": "node scripts/build-tests.mjs",
+    "test:unit": "node --test out-test/*.test.js",
+    "test": "npm run check-types && npm run build:production && npm run build:tests && npm run test:unit",
+    "package": "npm run test && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0"
+  }
+}
