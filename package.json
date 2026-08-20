@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "publisher": "personal",
   "license": "MIT",
+  "packageManager": "npm@11.17.0",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -160,5 +161,18 @@
         }
       }
     }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "build:production": "node scripts/build.mjs --production",
+    "package": "npm run check-types && npm run build:production && vsce package --no-dependencies --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.9.0"
   }
 }
