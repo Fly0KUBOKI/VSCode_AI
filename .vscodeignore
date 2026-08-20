@@ -1,4 +1,6 @@
 .git/**
+.gitignore
+.vscodeignore
 .github/**
 .vscode/**
 node_modules/**
@@ -10,4 +12,5 @@ out-integration/**
 tsconfig.json
 AI_USAGE_MONITOR_REQUIREMENTS.md
 TECHNICAL_VALIDATION.md
+TEST_RESULTS.md
 *.vsix

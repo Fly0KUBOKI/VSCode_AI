@@ -169,7 +169,7 @@
     "build:integration": "node scripts/build-integration.mjs",
     "test:unit": "node --test out-test/*.test.js",
     "test": "npm run check-types && npm run build:production && npm run build:tests && npm run build:integration && npm run test:unit",
-    "package": "npm run test && vsce package --no-dependencies"
+    "package": "npm run test && vsce package --no-dependencies --allow-missing-repository"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

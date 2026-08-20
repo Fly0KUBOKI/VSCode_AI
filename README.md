@@ -13,7 +13,7 @@ CodexとClaude Codeの利用率を、VS Codeのステータスバーとダッシ
 
 1. `ai-usage-monitor-0.1.0.vsix`を用意します。
 2. VS Codeで「Extensions: Install from VSIX...」を実行します。
-3. VS Codeを再読み込みします。
+3. VS Codeで「Developer: Reload Window」を実行します。
 4. コマンドパレットから`AI Usage: Open Dashboard`を実行します。
 
 Codexの自動取得には、OpenAI公式のCodex拡張がインストールされ、ChatGPTアカウントでログイン済みである必要があります。
@@ -55,4 +55,4 @@ npm run package
 - シェル経由で外部コマンドを実行しません。
 - テレメトリーはありません。
 
-既知の制約と技術検証結果は[TECHNICAL_VALIDATION.md](TECHNICAL_VALIDATION.md)を参照してください。
+既知の制約と技術検証結果は、ソース一式に含まれる`TECHNICAL_VALIDATION.md`を参照してください。
